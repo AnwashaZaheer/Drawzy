@@ -1,0 +1,4 @@
+﻿export interface RoundScore { id: string; name: string; avatar: string; points: number; totalScore: number; }
+const medals = ['🥇', '🥈', '🥉'];
+export const RoundScoreCard = ({ player, rank }: { player: RoundScore; rank: number }) => <li className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white px-4 py-3 shadow-sm transition-transform hover:-translate-y-0.5"><span className="w-7 text-xl">{medals[rank - 1] ?? `${rank}.`}</span><span className="text-2xl">{player.avatar}</span><div className="min-w-0 flex-1"><p className="truncate font-extrabold text-gray-800">{player.name}</p><p className="text-xs font-bold text-gray-500">{player.totalScore} total points</p></div><span className="rounded-xl bg-indigo-100 px-3 py-1.5 text-sm font-extrabold text-indigo-700">+{player.points}</span></li>;
+
