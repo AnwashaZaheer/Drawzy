@@ -1,22 +1,19 @@
+import { ArrowLeft, Gamepad2, Pencil } from 'lucide-react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common/Button';
-import { Pencil } from 'lucide-react';
+import { GameSummary, type GameSettings } from '../components/create-room/GameSummary';
+import { SettingSelect } from '../components/create-room/SettingSelect';
+import { ToggleSetting } from '../components/create-room/ToggleSetting';
+
+const roomCodeCharacters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const createRoomCode = () => Array.from({ length: 6 }, () => roomCodeCharacters[Math.floor(Math.random() * roomCodeCharacters.length)]).join('');
 
 export const CreateRoomPage = () => {
   const navigate = useNavigate();
-
-  return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
-      <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 max-w-md w-full text-center">
-        <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-indigo-600">
-          <Pencil className="w-8 h-8" />
-        </div>
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-4">Create Game</h1>
-        <p className="text-gray-600 font-medium mb-8">Coming Next...</p>
-        <Button onClick={() => navigate('/')} fullWidth>
-          Back to Home
-        </Button>
-      </div>
-    </div>
-  );
+  const [settings, setSettings] = useState<GameSettings>({ maxPlayers: 8, rounds: 3, drawingTime: 60, wordChoices: 3, language: 'English', isPrivate: true });
+  const [error, setError] = useState('');
+  const updateSetting = <K extends keyof GameSettings>(key: K, value: GameSettings[K]) => { setSettings((current) => ({ ...current, [key]: value })); setError(''); };
+  const handleCreate = () => { if (!settings.maxPlayers || !settings.rounds || !settings.drawingTime || !settings.wordChoices || !settings.language) { setError('Choose an option for every game setting.'); return; } navigate('/lobby', { state: { ...settings, roomCode: createRoomCode() } }); };
+  return <div className="min-h-screen bg-gray-50 font-sans selection:bg-indigo-200"><header className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4 sm:px-6"><Button variant="ghost" size="sm" onClick={() => navigate('/')} className="gap-2 px-3"><ArrowLeft className="h-4 w-4" /><span>Back</span></Button><div className="flex items-center gap-2" aria-label="Drawzy"><div className="rounded-xl bg-indigo-600 p-2"><Pencil className="h-5 w-5 text-white" /></div><span className="text-xl font-extrabold tracking-tight text-gray-900">Drawzy</span></div><div className="w-16 sm:w-[72px]" aria-hidden="true" /></header><main className="mx-auto w-full max-w-5xl px-4 pb-10 pt-7 sm:px-6 sm:pt-10"><div className="relative mx-auto mb-8 max-w-xl text-center sm:mb-10"><Pencil className="absolute -left-2 -top-3 h-6 w-6 -rotate-25 text-yellow-400 sm:-left-12" aria-hidden="true" /><h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Create a Game</h1><p className="mt-3 text-base font-medium text-gray-600 sm:text-lg">Set up your game and invite your friends.</p></div><div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-start"><section className="rounded-3xl border border-gray-100 bg-white p-5 shadow-sm sm:p-8"><div className="space-y-7"><SettingSelect label="Maximum Players" options={[2, 4, 6, 8] as const} value={settings.maxPlayers} onChange={(value) => updateSetting('maxPlayers', value)} /><SettingSelect label="Number of Rounds" options={[1, 2, 3, 5] as const} value={settings.rounds} onChange={(value) => updateSetting('rounds', value)} /><SettingSelect label="Drawing Time" options={[30, 60, 90, 120] as const} value={settings.drawingTime} onChange={(value) => updateSetting('drawingTime', value)} formatOption={(value) => `${value}s`} /><SettingSelect label="Word Choices" options={[2, 3, 4] as const} value={settings.wordChoices} onChange={(value) => updateSetting('wordChoices', value)} /><SettingSelect label="Language" options={['English', 'Spanish', 'French', 'German'] as const} value={settings.language} onChange={(value) => updateSetting('language', value)} /><ToggleSetting checked={settings.isPrivate} onChange={(value) => updateSetting('isPrivate', value)} /></div>{error && <p className="mt-5 text-sm font-bold text-red-500" role="alert">{error}</p>}<Button size="lg" fullWidth onClick={handleCreate} className="mt-7 gap-2 text-lg"><Gamepad2 className="h-5 w-5" />Create Game</Button></section><GameSummary settings={settings} /></div></main></div>;
 };
