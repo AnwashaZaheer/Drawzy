@@ -1,0 +1,3 @@
+﻿export const WordDisplay = ({ isDrawer, drawerName, word, status }: { isDrawer: boolean; drawerName: string; word: string | null; status: string }) => <section className="rounded-2xl border border-indigo-100 bg-indigo-50/70 px-5 py-4 text-center"><p className="font-extrabold text-indigo-700">{isDrawer ? (word ? 'Your turn to draw!' : 'Choose a word to begin') : `${drawerName} is drawing...`}</p>{isDrawer && word ? <p className="mt-1 text-lg font-extrabold tracking-wide text-gray-900">{word}</p> : !isDrawer && <p className="mt-2 text-xl font-extrabold tracking-[0.35em] text-gray-700">_ _ _ _ _</p>}{status === 'Time’s up!' && <p className="mt-1 text-sm font-bold text-red-500">Time’s up!</p>}</section>;
+
+

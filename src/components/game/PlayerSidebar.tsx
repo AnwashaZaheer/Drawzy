@@ -1,0 +1,2 @@
+﻿import type { GamePlayer } from './types'; import { PlayerCard } from './PlayerCard'; import { EmptyState } from '../common/EmptyState';
+export const PlayerSidebar = ({ players }: { players: GamePlayer[] }) => <aside className="overflow-x-auto lg:overflow-visible">{players.length === 0 ? <EmptyState kind="players" /> : <div className="flex gap-3 lg:flex-col">{players.map((player) => <PlayerCard key={player.id} player={player} />)}</div>}</aside>;
