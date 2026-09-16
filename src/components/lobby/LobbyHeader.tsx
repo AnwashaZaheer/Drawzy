@@ -1,0 +1,3 @@
+import { ArrowLeft, Pencil } from 'lucide-react';
+import { Button } from '../common/Button';
+export const LobbyHeader = ({ onBack }: { onBack: () => void }) => <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4 sm:px-6"><Button variant="ghost" size="sm" onClick={onBack} className="gap-2 px-3"><ArrowLeft className="h-4 w-4" />Back</Button><div className="flex items-center gap-2"><div className="rounded-xl bg-indigo-600 p-2"><Pencil className="h-5 w-5 text-white" /></div><span className="text-xl font-extrabold tracking-tight text-gray-900">Drawzy</span></div><div className="w-16" /></header>;

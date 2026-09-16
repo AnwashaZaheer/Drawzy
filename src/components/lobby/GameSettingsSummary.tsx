@@ -1,0 +1,4 @@
+﻿import { Globe2, LockKeyhole, MessageSquareText, Timer, Users } from 'lucide-react';
+import type { GameSettings } from './types';
+export const GameSettingsSummary = ({ settings }: { settings: GameSettings }) => { const items = [[Users, `${settings.maxPlayers} Players`], [MessageSquareText, `${settings.rounds} Rounds`], [Timer, `${settings.drawingTime} Seconds`], [MessageSquareText, `${settings.wordChoices} Words`], [Globe2, settings.language], [LockKeyhole, settings.isPrivate ? 'Private Game' : 'Public Game']] as const; return <aside className="rounded-3xl border border-gray-100 bg-white p-5 shadow-sm"><h2 className="mb-4 text-lg font-extrabold text-gray-900">Game Settings</h2><ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">{items.map(([Icon, label]) => <li key={label} className="flex items-center gap-2 text-sm font-bold text-gray-600"><Icon className="h-4 w-4 text-indigo-600" />{label}</li>)}</ul></aside>; };
+
