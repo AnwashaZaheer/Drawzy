@@ -8,4 +8,6 @@
   body {
     @apply bg-gray-50 text-gray-900 antialiased selection:bg-indigo-200 selection:text-indigo-900;
   }
-}
+}@layer base { html, body, #root { max-width: 100%; overflow-x: hidden; } button, input { min-height: 44px; } }
+@keyframes page-enter { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } } .page-enter { animation: page-enter 180ms ease-out both; } @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+@layer base { button:focus-visible, input:focus-visible { outline: 2px solid #4f46e5; outline-offset: 2px; } }

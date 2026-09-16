@@ -1,18 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
+﻿import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { FinalResults } from './components/results/FinalResults';
+import { RoundResults } from './components/results/RoundResults';
 import { CreateRoomPage } from './pages/CreateRoomPage';
+import { GamePage } from './pages/GamePage';
+import { HomePage } from './pages/HomePage';
 import { JoinRoomPage } from './pages/JoinRoomPage';
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<CreateRoomPage />} />
-        <Route path="/join" element={<JoinRoomPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
+import { LobbyPage } from './pages/LobbyPage';
+const AnimatedRoutes = () => { const location = useLocation(); return <div key={location.pathname} className="page-enter"><Routes location={location}><Route path="/" element={<HomePage />} /><Route path="/create" element={<CreateRoomPage />} /><Route path="/join" element={<JoinRoomPage />} /><Route path="/lobby" element={<LobbyPage />} /><Route path="/game" element={<GamePage key={location.key} />} /><Route path="/round-results" element={<RoundResults />} /><Route path="/final-results" element={<FinalResults />} /></Routes></div>; };
+function App() { return <BrowserRouter><AnimatedRoutes /></BrowserRouter>; }
 export default App;
+
