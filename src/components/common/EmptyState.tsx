@@ -1,0 +1,4 @@
+﻿import { MessageCircleMore, Users } from 'lucide-react';
+import { Button } from './Button';
+type EmptyKind = 'players' | 'chat';
+export const EmptyState = ({ kind, onAction }: { kind: EmptyKind; onAction?: () => void }) => { const isPlayers = kind === 'players'; const Icon = isPlayers ? Users : MessageCircleMore; return <div className="flex min-h-40 flex-col items-center justify-center rounded-3xl border border-dashed border-gray-200 bg-gray-50 p-6 text-center"><div className="mb-3 rounded-2xl bg-indigo-100 p-3 text-indigo-600"><Icon className="h-6 w-6" /></div><h3 className="font-extrabold text-gray-800">{isPlayers ? 'No players yet' : 'No messages yet'}</h3><p className="mt-1 max-w-xs text-sm font-medium text-gray-500">{isPlayers ? 'Invite your friends to start playing.' : 'Be the first to make a guess!'}</p>{isPlayers && onAction && <Button variant="secondary" size="sm" onClick={onAction} className="mt-4">Copy Invite Link</Button>}</div>; };
