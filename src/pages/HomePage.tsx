@@ -18,8 +18,8 @@ export const HomePage = () => {
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-8">
         <Hero />
         <PlayerSetup nickname={nickname} setNickname={setNickname} avatar={avatar} setAvatar={setAvatar} />
-        <GameActions nickname={nickname} />
-        <QuickJoin />
+        <GameActions nickname={nickname} avatar={avatar} />
+        <QuickJoin nickname={nickname} avatar={avatar} />
         <GameFeatures />
       </main>
       <Footer />

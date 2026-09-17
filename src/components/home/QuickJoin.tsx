@@ -3,16 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../common/Button';
 import { Ticket } from 'lucide-react';
 
-export const QuickJoin = () => {
+interface Props {
+  nickname: string;
+  avatar: string;
+}
+
+export const QuickJoin: React.FC<Props> = ({ nickname, avatar }) => {
   const navigate = useNavigate();
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
   const handleJoin = (event: React.FormEvent) => {
     event.preventDefault();
     const normalized = code.trim().toUpperCase();
+    if (!nickname.trim()) { setError('Tell us your nickname first!'); return; }
     if (!normalized) { setError('Enter a room code'); return; }
     if (!/^[A-Z0-9]{6}$/.test(normalized)) { setError('Use 6 letters or numbers'); return; }
-    navigate('/join', { state: { roomCode: normalized } });
+    navigate('/join', { state: { roomCode: normalized, nickname, avatar } });
   };
   return (
     <div className="mx-auto mt-8 w-full max-w-md text-center bg-white border-2 border-dashed border-ink/50 rounded-3xl p-4 rotate-[0.3deg]">

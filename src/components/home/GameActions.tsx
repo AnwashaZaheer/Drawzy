@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../common/Button';
-import { Pencil, Users } from 'lucide-react';
+import { Pencil, Shuffle } from 'lucide-react';
 
 interface Props {
   nickname: string;
+  avatar: string;
 }
 
-export const GameActions: React.FC<Props> = ({ nickname }) => {
+export const GameActions: React.FC<Props> = ({ nickname, avatar }) => {
   const navigate = useNavigate();
   const [error, setError] = React.useState('');
 
@@ -17,16 +18,16 @@ export const GameActions: React.FC<Props> = ({ nickname }) => {
       return;
     }
     setError('');
-    navigate('/create');
+    navigate('/create', { state: { nickname, avatar } });
   };
 
-  const handleJoin = () => {
+  const handleQuickMatch = () => {
     if (!nickname.trim()) {
       setError('Please enter a nickname first!');
       return;
     }
     setError('');
-    navigate('/join');
+    navigate('/quick-match', { state: { nickname, avatar } });
   };
 
   return (
@@ -40,9 +41,9 @@ export const GameActions: React.FC<Props> = ({ nickname }) => {
         <Pencil className="w-5 h-5" />
         Create Game
       </Button>
-      <Button variant="blue" size="lg" fullWidth onClick={handleJoin} className="gap-2 text-lg">
-        <Users className="w-5 h-5" />
-        Join Game
+      <Button variant="blue" size="lg" fullWidth onClick={handleQuickMatch} className="gap-2 text-lg">
+        <Shuffle className="w-5 h-5" />
+        Play with Strangers
       </Button>
     </div>
   );
