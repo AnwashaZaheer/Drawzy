@@ -13,7 +13,7 @@ export const HomePage = () => {
   const [avatar, setAvatar] = useState(avatars[0]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans selection:bg-indigo-200">
+    <div className="min-h-screen flex flex-col font-sans">
       <Navbar />
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-8">
         <Hero />

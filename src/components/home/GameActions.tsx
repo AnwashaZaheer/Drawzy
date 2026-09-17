@@ -30,13 +30,17 @@ export const GameActions: React.FC<Props> = ({ nickname }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto w-full flex flex-col gap-3">
-      {error && <p className="text-red-500 font-bold text-sm text-center mb-2">{error}</p>}
+    <div className="max-w-md mx-auto w-full flex flex-col gap-4">
+      {error && (
+        <p className="mx-auto bg-crayon-red text-white font-bold text-sm px-4 py-1.5 rounded-full border-2 border-ink animate-wiggle">
+          oops! {error}
+        </p>
+      )}
       <Button size="lg" fullWidth onClick={handleCreate} className="gap-2 text-lg">
         <Pencil className="w-5 h-5" />
         Create Game
       </Button>
-      <Button variant="secondary" size="lg" fullWidth onClick={handleJoin} className="gap-2 text-lg">
+      <Button variant="blue" size="lg" fullWidth onClick={handleJoin} className="gap-2 text-lg">
         <Users className="w-5 h-5" />
         Join Game
       </Button>

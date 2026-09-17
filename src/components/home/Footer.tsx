@@ -1,12 +1,12 @@
 export const Footer = () => {
   return (
-    <footer className="py-8 text-center text-sm font-semibold text-gray-400 mt-auto">
-      <div className="flex justify-center gap-4 mb-2">
-        <a href="#" className="hover:text-gray-600">How to Play</a>
-        <a href="#" className="hover:text-gray-600">Privacy</a>
-        <a href="#" className="hover:text-gray-600">Terms</a>
+    <footer className="py-8 text-center text-sm font-semibold text-ink/60 mt-auto">
+      <div className="flex justify-center gap-5 mb-2">
+        <a href="#" className="hover:text-ink hover:underline underline-offset-4">How to Play</a>
+        <a href="#" className="hover:text-ink hover:underline underline-offset-4">Privacy</a>
+        <a href="#" className="hover:text-ink hover:underline underline-offset-4">Terms</a>
       </div>
-      <p>Drawzy © 2026</p>
+      <p>made with <span className="animate-bounce-soft inline-block">❤️</span> · Drawzy © 2026</p>
     </footer>
   );
 };
