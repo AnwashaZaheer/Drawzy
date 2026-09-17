@@ -1,5 +1,4 @@
-﻿import { Pencil, Moon } from 'lucide-react';
-import { Button } from '../common/Button';
+﻿import { Pencil } from 'lucide-react';
 
 export const Navbar = () => {
   return (
@@ -17,9 +16,6 @@ export const Navbar = () => {
         <div className="flex items-center gap-3">
           <a href="#" className="font-semibold text-ink/80 hover:text-ink hover:underline underline-offset-4 hidden sm:block">How to Play</a>
           <a href="#" className="font-semibold text-ink/80 hover:text-ink hover:underline underline-offset-4 hidden sm:block">About</a>
-          <Button variant="ghost" size="sm" className="p-2">
-            <Moon className="w-5 h-5" />
-          </Button>
         </div>
       </div>
     </nav>
